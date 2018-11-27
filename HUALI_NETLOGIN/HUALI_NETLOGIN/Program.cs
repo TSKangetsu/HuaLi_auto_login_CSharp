@@ -10,25 +10,44 @@ namespace ConsoleApp1
     {
         static void Main()
         {
-            Console.WriteLine("请输入IP地址");
-            string IPD = Console.ReadLine();
             Console.WriteLine("请输入用户名");
             string user = Console.ReadLine();
             Console.WriteLine("请输入密码");
             string password = Console.ReadLine();
             var test = new Net_work();
-            test.Network(IPD, user, password);
+            Console.WriteLine();
+            test.Network(user, password);
+            Console.Read();
         }
 
     }
 }
 class Net_work
 {
-    public void Network(string IPD, string user, string password)
+
+    private string GETIP()
     {
+        string psde = string.Empty;
+        string ipd = Dns.GetHostName();
+        IPAddress[] iplist = Dns.GetHostAddresses(ipd);
+        foreach (IPAddress IPD in iplist)
+        {
+            if (IPD.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+            {
+                psde = IPD.ToString();
+            }
+        };
+        return psde;
+    }
+
+
+    public void Network(string user, string password)
+    {
+        Net_work ins = new Net_work();
+
         List<string> poststring1 = new List<string>
         {
-            "wlanuserip=" + IPD,
+            "wlanuserip="+  ins.GETIP(),
             "&wlanacname=gzhlxy",
             "&chal_id=&chal_vector=",
             "&auth_type=PAP",
@@ -69,7 +88,6 @@ class Net_work
         };
 
         string postString = string.Empty;
-
         foreach (string adpat in poststring1)
         {
             postString = postString + adpat;
