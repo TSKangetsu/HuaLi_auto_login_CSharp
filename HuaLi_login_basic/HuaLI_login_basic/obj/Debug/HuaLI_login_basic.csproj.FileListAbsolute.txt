@@ -1,6 +1,0 @@
-C:\Users\TSKG\OneDrive\文档\Visual Studio 2017\source\HuaLI_login_basic\HuaLI_login_basic\bin\Debug\HuaLI_login_basic.exe
-C:\Users\TSKG\OneDrive\文档\Visual Studio 2017\source\HuaLI_login_basic\HuaLI_login_basic\bin\Debug\HuaLI_login_basic.pdb
-C:\Users\TSKG\OneDrive\文档\Visual Studio 2017\source\HuaLI_login_basic\HuaLI_login_basic\obj\Debug\HuaLI_login_basic.csprojAssemblyReference.cache
-C:\Users\TSKG\OneDrive\文档\Visual Studio 2017\source\HuaLI_login_basic\HuaLI_login_basic\obj\Debug\HuaLI_login_basic.csproj.CoreCompileInputs.cache
-C:\Users\TSKG\OneDrive\文档\Visual Studio 2017\source\HuaLI_login_basic\HuaLI_login_basic\obj\Debug\HuaLI_login_basic.exe
-C:\Users\TSKG\OneDrive\文档\Visual Studio 2017\source\HuaLI_login_basic\HuaLI_login_basic\obj\Debug\HuaLI_login_basic.pdb
