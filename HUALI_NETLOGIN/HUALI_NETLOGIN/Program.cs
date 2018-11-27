@@ -14,8 +14,10 @@ namespace ConsoleApp1
         static void Main()
         {
             Strat test2 = new Strat();
+            string user = test2.User1;
+            string password = test2.Password1;
             Net_work test = new Net_work();
-            test.Network(test2.User , test2.Password);
+            test.Network(user,password);
         }
 
     }
@@ -25,8 +27,8 @@ namespace ConsoleApp1
 /// </summary>
 class Strat
 {
-    public string User { get; set; }
-    public string Password { get; set; }
+    public string User1;
+    public string Password1;
     public Strat()
     {
         string path = System.IO.Directory.GetCurrentDirectory();
@@ -35,24 +37,26 @@ class Strat
         if (File.Exists(path1) == false)
         {
             Console.WriteLine("请输入用户名");
-            User = Console.ReadLine();
+            User1 = Console.ReadLine();
             Console.WriteLine("请输入密码");
-            Password = Console.ReadLine();
+            Password1 = Console.ReadLine();
             /*----------------------------------*/
             FileStream txtfile = new FileStream(path1, FileMode.OpenOrCreate, FileAccess.Write);
             StreamWriter txtwrite = new StreamWriter(txtfile);
-            txtwrite.WriteLine(User);
+            txtwrite.WriteLine(User1);
             txtwrite.Close();
             /*---------------------------------*/
             FileStream txtfile2 = new FileStream(path2, FileMode.OpenOrCreate, FileAccess.Write);
             StreamWriter txtwrite2 = new StreamWriter(txtfile2);
-            txtwrite2.WriteLine(Password);
+            txtwrite2.WriteLine(Password1);
             txtwrite2.Close();
         }
         else
         {
-            User = File.ReadAllText(path1);
-            Password = File.ReadAllText(path2);
+            StreamReader str2 = new StreamReader(path1);
+            User1 = str2.ReadLine();
+            StreamReader str3 = new StreamReader(path2);
+            Password1 = str3.ReadLine();
         }
     }
 }
