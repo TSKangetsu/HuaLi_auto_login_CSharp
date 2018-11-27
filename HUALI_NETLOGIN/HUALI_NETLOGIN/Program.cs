@@ -1,30 +1,66 @@
-﻿using System.Text;
+﻿using System.IO;
+using System.Text;
 using System.Net;
 using System.Collections.Generic;
 using System;
 
-
+/// <summary>
+/// 程序主体
+/// </summary>
 namespace ConsoleApp1
 {
     class Program
     {
         static void Main()
         {
-            Console.WriteLine("请输入用户名");
-            string user = Console.ReadLine();
-            Console.WriteLine("请输入密码");
-            string password = Console.ReadLine();
-            var test = new Net_work();
-            Console.WriteLine();
-            test.Network(user, password);
-            Console.Read();
+            Net_work test = new Net_work();
+            Strat test2 = new Strat();
+            test.Network(test2.User , test2.Password);
         }
 
     }
 }
+/// <summary>
+///判断是否写入过用户和密码
+/// </summary>
+class Strat
+{
+    public string User { get; set; }
+    public string Password { get; set; }
+    public Strat()
+    {
+        string path = System.IO.Directory.GetCurrentDirectory();
+        String path1 = path + "/user.txt";
+        string path2 = path + "/password.txt";
+        if (File.Exists(path1) == false)
+        {
+            Console.WriteLine("请输入用户名");
+            User = Console.ReadLine();
+            Console.WriteLine("请输入密码");
+            Password = Console.ReadLine();
+            /*----------------------------------*/
+            FileStream txtfile = new FileStream(path1, FileMode.OpenOrCreate, FileAccess.Write);
+            StreamWriter txtwrite = new StreamWriter(txtfile);
+            txtwrite.WriteLine(User);
+            txtwrite.Close();
+            /*---------------------------------*/
+            FileStream txtfile2 = new FileStream(path2, FileMode.OpenOrCreate, FileAccess.Write);
+            StreamWriter txtwrite2 = new StreamWriter(txtfile2);
+            txtwrite2.WriteLine(Password);
+            txtwrite2.Close();
+        }
+        else
+        {
+            User = File.ReadAllText(path1);
+            Password = File.ReadAllText(path2);
+        }
+    }
+}
+/// <summary>
+/// 网络构造和发送
+/// </summary>
 class Net_work
 {
-
     private string GETIP()
     {
         string psde = string.Empty;
@@ -39,8 +75,6 @@ class Net_work
         };
         return psde;
     }
-
-
     public void Network(string user, string password)
     {
         Net_work ins = new Net_work();
