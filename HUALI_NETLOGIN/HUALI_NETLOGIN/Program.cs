@@ -13,8 +13,8 @@ namespace ConsoleApp1
     {
         static void Main()
         {
-            Net_work test = new Net_work();
             Strat test2 = new Strat();
+            Net_work test = new Net_work();
             test.Network(test2.User , test2.Password);
         }
 
@@ -30,8 +30,8 @@ class Strat
     public Strat()
     {
         string path = System.IO.Directory.GetCurrentDirectory();
-        String path1 = path + "/user.txt";
-        string path2 = path + "/password.txt";
+        String path1 = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/user.txt";
+        string path2 = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/pass.txt";
         if (File.Exists(path1) == false)
         {
             Console.WriteLine("请输入用户名");
