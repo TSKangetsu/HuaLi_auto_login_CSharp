@@ -32,8 +32,7 @@ class Strat
     public Strat()
     {
         string path = System.IO.Directory.GetCurrentDirectory();
-        String path1 = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/user.txt";
-        string path2 = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/pass.txt";
+        String path1 = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/HUALI_login.txt";
         if (File.Exists(path1) == false)
         {
             Console.WriteLine("请输入用户名");
@@ -44,19 +43,14 @@ class Strat
             FileStream txtfile = new FileStream(path1, FileMode.OpenOrCreate, FileAccess.Write);
             StreamWriter txtwrite = new StreamWriter(txtfile);
             txtwrite.WriteLine(User1);
+            txtwrite.WriteLine(Password1);
             txtwrite.Close();
-            /*---------------------------------*/
-            FileStream txtfile2 = new FileStream(path2, FileMode.OpenOrCreate, FileAccess.Write);
-            StreamWriter txtwrite2 = new StreamWriter(txtfile2);
-            txtwrite2.WriteLine(Password1);
-            txtwrite2.Close();
         }
         else
         {
             StreamReader str2 = new StreamReader(path1);
             User1 = str2.ReadLine();
-            StreamReader str3 = new StreamReader(path2);
-            Password1 = str3.ReadLine();
+            Password1 = str2.ReadLine();    
         }
     }
 }
