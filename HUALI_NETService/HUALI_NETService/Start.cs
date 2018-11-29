@@ -9,9 +9,9 @@ namespace HUALI_NETObject
 {
     class Detect_info
     {
-        public string User1;
-        public string Password1;
-        public string inst_note;
+        public string User1 { get; set; }
+        public string Password1 { get; set; }
+        public string inst_note { get; set; }
         public string path1 = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/HUALI_login.txt";
         public string Detect()
         {
@@ -27,14 +27,11 @@ namespace HUALI_NETObject
             }
             return inst_note;
         }
-
     }
 
-    class ride_info
+    class Ride_info:Detect_info
     {
-        public string User1;
-        public string Password1;
-        public ride_info()
+        public Ride_info()
         {
             string path = System.IO.Directory.GetCurrentDirectory();
             String path1 = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/HUALI_login.txt";

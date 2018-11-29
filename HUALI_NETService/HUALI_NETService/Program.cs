@@ -15,23 +15,24 @@ namespace HUALI_NETService
     /// 程序的主入口（基本框架）
     /// </summary>
     using HUALI_NETObject;//程序集在Object.cs里面
+    using HUALI_NET;//程序集在NET.cs里面
     /***---------------***/
     static class Program
     {
         static void Main()
         {
-            Detect_info test_ins = new Detect_info();//使用之前导入的参数判断是以windows服务启动还是启动安装程序；
+            Detect_info test_ins = new Detect_info();//使用之前导入的参数判断是以windows服务启动还是启动安装程序；*/*/在Start.cs内的类
             if(test_ins.Detect() == "installed")
-            {
+            {//这一段是判断是否输入过用户密码，有则会成为服务的形式运行，否则执行else，将会变为控制台程序获取输入*/
                 ServiceBase[] ServicesToRun = new ServiceBase[]
                 {
                     new Service1()
                 };
                 ServiceBase.Run(ServicesToRun);
-            }
+            }//到这里为服务本体，在OnStart方法启动---------------------------------------------------------------*/
             else
             {
-                ride_info test_ins2 = new ride_info();
+                Ride_info test_ins2 = new Ride_info();//Start.cs内的类
             }
         }
     }
@@ -47,6 +48,9 @@ namespace HUALI_NETService
 
         protected override void OnStart(string[] args)//服务承载的主体，开机自动运行的部分
         {
+            Detect_info infoNet = new Detect_info();//初始化Start.cs的类，获得账户密码的字段
+            Net_work Net_Drive = new Net_work();//初始话NET.cs的方法
+            Net_Drive.Network(infoNet.User1 , infoNet.Password1);
         }
 
         protected override void OnStop()
@@ -60,7 +64,6 @@ namespace HUALI_NETService
     /// 
     partial class Service1
     {
-
         private System.ComponentModel.IContainer components = null;
         protected override void Dispose(bool disposing)
         {
@@ -76,7 +79,6 @@ namespace HUALI_NETService
             components = new System.ComponentModel.Container();
             this.ServiceName = "Service1";
         }
-
         #endregion
     }
     /*-------------------------------------------------------------------------------------------------------------------下面是琪露诺时间*/
@@ -127,9 +129,7 @@ namespace HUALI_NETService
             this.serviceInstaller1});
 
         }
-
         #endregion
-
         private System.ServiceProcess.ServiceProcessInstaller serviceProcessInstaller1;
         private System.ServiceProcess.ServiceInstaller serviceInstaller1;
     }
