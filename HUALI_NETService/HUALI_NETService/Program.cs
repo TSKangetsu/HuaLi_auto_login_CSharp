@@ -5,24 +5,36 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-/*--------------------------------------------------------------------------------------------------------------------------/*cnm的煞笔编译器*/
+using System.IO;
+using System.Text;
+using System.Net;
+/*--------------------------------------------------------------------------------------------------------------------------/*杀一个程序员祭天*/
 namespace HUALI_NETService
 {
     /// <summary>
     /// 程序的主入口（基本框架）
     /// </summary>
+    using HUALI_NETObject;//程序集在Object.cs里面
+    /***---------------***/
     static class Program
     {
         static void Main()
         {
-            ServiceBase[] ServicesToRun = new ServiceBase[]
+            Detect_info test_ins = new Detect_info();//使用之前导入的参数判断是以windows服务启动还是启动安装程序；
+            if(test_ins.Detect() == "installed")
             {
-                new Service1()
-            };
-            ServiceBase.Run(ServicesToRun);
+                ServiceBase[] ServicesToRun = new ServiceBase[]
+                {
+                    new Service1()
+                };
+                ServiceBase.Run(ServicesToRun);
+            }
+            else
+            {
+                ride_info test_ins2 = new ride_info();
+            }
         }
     }
-    /*-------------------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     /// Service的主入口（基本框架）
     /// </summary>
@@ -33,7 +45,7 @@ namespace HUALI_NETService
             InitializeComponent();
         }
 
-        protected override void OnStart(string[] args)
+        protected override void OnStart(string[] args)//服务承载的主体，开机自动运行的部分
         {
         }
 
@@ -42,6 +54,10 @@ namespace HUALI_NETService
         }
     }
     /*--------------------------------------------------------------------------------------------设计器生成的默认代码，我也不知道有什么用*/
+    /// <summary>
+    /// 这后面真的不用管了我也看不懂，都是windows服务的模板要求
+    /// </summary>
+    /// 
     partial class Service1
     {
 
@@ -98,7 +114,7 @@ namespace HUALI_NETService
             this.serviceProcessInstaller1.Username = null;
             // 
             // serviceInstaller1
-            // 
+            // 里面是在servicecontrol里面的名字和描述---*/
             this.serviceInstaller1.Description = "TEST";
             this.serviceInstaller1.DisplayName = "SERVICE TEST";
             this.serviceInstaller1.ServiceName = "Service tests";
