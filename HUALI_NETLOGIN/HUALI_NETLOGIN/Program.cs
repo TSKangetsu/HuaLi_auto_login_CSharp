@@ -16,8 +16,15 @@ namespace ConsoleApp1
             Strat test2 = new Strat();
             string user = test2.User1;
             string password = test2.Password1;
-            Net_work test = new Net_work();
-            test.Network(user,password);
+            try
+            {
+                Net_work test = new Net_work();
+                test.Network(user, password);
+            }catch
+            {
+                Console.WriteLine("");
+            }
+
         }
 
     }
