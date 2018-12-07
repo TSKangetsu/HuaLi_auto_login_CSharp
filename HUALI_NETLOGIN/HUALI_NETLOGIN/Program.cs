@@ -3,6 +3,8 @@ using System.Text;
 using System.Net;
 using System.Collections.Generic;
 using System;
+using System.Management;
+using System.Text.RegularExpressions;
 
 /// <summary>
 /// 程序主体
@@ -66,27 +68,13 @@ class Strat
 /// </summary>
 class Net_work
 {
-    private string GETIP()
-    {
-        string psde = string.Empty;
-        string ipd = Dns.GetHostName();
-        IPAddress[] iplist = Dns.GetHostAddresses(ipd);
-        foreach (IPAddress IPD in iplist)
-        {
-            if (IPD.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-            {
-                psde = IPD.ToString();
-            }
-        };
-        return psde;
-    }
     public void Network(string user, string password)
     {
-        Net_work ins = new Net_work();
+        IP_Test_module IPD = new IP_Test_module();
 
         List<string> poststring1 = new List<string>
         {
-            "wlanuserip="+  ins.GETIP(),
+            "wlanuserip="+IPD.IPAddress,
             "&wlanacname=gzhlxy",
             "&chal_id=&chal_vector=",
             "&auth_type=PAP",
@@ -133,8 +121,56 @@ class Net_work
         };
         string url = "http://219.136.125.139/portalAuthAction.do";
         var postData = Encoding.UTF8.GetBytes(postString);
-        WebClient data_post = new WebClient();
+        WebClient data_post = new WebClient();//webclient模拟表单提交
         data_post.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
         data_post.UploadData(url, "POST", postData);
+    }
+}
+/// <summary>
+/// 真实有线网卡IP获得
+/// </summary>
+public class IP_Test_module
+{
+    private const string IPv4RegularExpression = "^(?:(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d)))\\.){3}(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d)))$";
+    private const string Device_Include = "^GBE$";
+    //正则式
+    private string[] Device { get; set; }//所有真实的网卡
+    private string Target_Device { get; set; }//筛选出来的有线网卡
+    //Adapter的元素
+    private string[] IPAddresses { get; set; }
+    public string IPAddress { get; set; }
+
+    public IP_Test_module()
+    {
+        ManagementObjectCollection Ture_NETWork_Adapter = new ManagementObjectSearcher("SELECT * FROM Win32_NetworkAdapter WHERE PNPDeviceID LIKE 'PCI%'").Get();
+        foreach(ManagementObject Ture_Adapter in Ture_NETWork_Adapter)
+        {
+            Device = Ture_Adapter["Description"] as string[];
+        }
+        foreach(string Ture_Device in Device)
+        {
+            Match matchs = Regex.Match(Ture_Device, Device_Include);
+            if(matchs.Success)
+            {
+                Target_Device = Ture_Device;
+            }
+        }
+        //先从Win32_NetworkAdapter里面筛选符合条件的网卡并提取描述，并在下面与Win32_NetworkAdapterConfiguration类里查找相同描述的网卡并取得IP地址
+        //这是 Win32_NetworkAdapter https://docs.microsoft.com/zh-cn/windows/desktop/CIMWin32Prov/win32-networkadapter 的元素
+        //这是 Win32_NetworkAdapterConfiguration https://docs.microsoft.com/zh-cn/windows/desktop/CIMWin32Prov/win32-networkadapterconfiguration 的元素
+        //windows网卡的管理真tm屑，煞 笔 系 统 
+        ManagementObjectCollection Target_Adapter_info = new ManagementObjectSearcher("SELECT * FROM Win32_NetworkAdapterConfiguration WHERE Description=" + "'" + Target_Device + "'").Get();
+        foreach(ManagementObject Address in Target_Adapter_info)
+        {
+            IPAddresses = Address["IPAddress"] as string[];
+            foreach(string Target_Address in IPAddresses)
+            {
+                Match matchs = Regex.Match(Target_Address , IPv4RegularExpression);//IP组有IPV4和IPV6，这里用正则式筛掉IPV6
+                if(matchs.Success)
+                {
+                    IPAddress = Target_Address;
+                }
+            }
+        }
     }
 }
