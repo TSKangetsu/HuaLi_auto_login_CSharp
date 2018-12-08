@@ -17,49 +17,49 @@ namespace PCI_IP_module
             IP_Test_module inst = new IP_Test_module();
 
             List<string> poststring1 = new List<string>
-        {
-            "wlanuserip="+inst.IPAddress ,
-            "&wlanacname=gzhlxy",
-            "&chal_id=",
-            "&chal_vector=",
-            "&auth_type=PAP",
-            "&seq_id=",
-            "&req_id=",
-            "&wlanacIp=183.56.17.19",
-            "&ssid=",
-            "&vlan=",
-            "&mac=",
-            "&message=",
-            "&bank_acct=",
-            "&isCookies=",
-            "&version=0",
-            "&authkey=gzhlxy",
-            "&url=",
-            "&usertime=0",
-            "&listpasscode=0",
-            "&listgetpass=0",
-            "&getpasstype=0",
-            "&randstr=",
-            "&domain=GDHLXY",
-            "&isRadiusProxy=false",
-            "&usertype=0",
-            "&isHaveNotice=0",
-            "&times=12",
-            "&weizhi=0",
-            "&smsid=0",
-            "&freeuser=",
-            "&freepasswd=",
-            "&listwxauth=0",
-            "&templatetype=1",
-            "&tname=5",
-            "&logintype=0",
-            "&act=",
-            "&is189=true",
-            "&terminalType=",
-            "&useridtemp="+user,
-            "&userid="+user+"%40GDHLXY",
-            "&passwd="+password,
-        };
+            {
+                "wlanuserip="+inst.IPAddress ,
+                "&wlanacname=gzhlxy",
+                "&chal_id=",
+                "&chal_vector=",
+                "&auth_type=PAP",
+                "&seq_id=",
+                "&req_id=",
+                "&wlanacIp=183.56.17.19",
+                "&ssid=",
+                "&vlan=",
+                "&mac=",
+                "&message=",
+                "&bank_acct=",
+                "&isCookies=",
+                "&version=0",
+                "&authkey=gzhlxy",
+                "&url=",
+                "&usertime=0",
+                "&listpasscode=0",
+                "&listgetpass=0",
+                "&getpasstype=0",
+                "&randstr=",
+                "&domain=GDHLXY",
+                "&isRadiusProxy=false",
+                "&usertype=0",
+                "&isHaveNotice=0",
+                "&times=12",
+                "&weizhi=0",
+                "&smsid=0",
+                "&freeuser=",
+                "&freepasswd=",
+                "&listwxauth=0",
+                "&templatetype=1",
+                "&tname=5",
+                "&logintype=0",
+                "&act=",
+                "&is189=true",
+                "&terminalType=",
+                "&useridtemp="+user,
+                "&userid="+user+"%40GDHLXY",
+                "&passwd="+password,
+            };
 
             string postString = string.Empty;
             foreach (string adpat in poststring1)
@@ -73,6 +73,56 @@ namespace PCI_IP_module
             data_post.UploadData(url, "POST", postData);
         }
     }
+    /// <summary>
+    /// 下线的数据包，先放着，现在没用上
+    /// </summary>
+    class Offline
+    {
+        List<string> poststring2 = new List<string>
+        {
+            "userid=19924613328%40GDHLXY" ,
+            "&wlanuserip=",//ip
+            "&wlanacname=gzhlxy" ,
+            "&chal_id=" ,
+            "&chal_vector=" ,
+            "&auth_type=PAP" ,
+            "&seq_id=" ,
+            "&req_id=" ,
+            "&wlanacIp=183.56.17.19" ,
+            "&ssid=" ,
+            "&vlan=" ,
+            "&mac=" ,
+            "&message=" ,
+            "%C4%FA%B5%C4%BF%C9%D3%C3%CC%EC%CA%FD%CE%AA%28%CC%EC%29%3A23.0" ,
+            "&bank_acct=" ,
+            "&isCookies=" ,
+            "&version=0" ,
+            "&authkey=gzhlxy" ,
+            "&url=http%3A%2F%2Fabout%3Ablank" ,
+            "&usertime=570192564" ,
+            "&listpasscode=0" ,
+            "&listgetpass=0" ,
+            "&getpasstype=0" ,
+            "&randstr=" ,
+            "&domain=GDHLXY" ,
+            "&isRadiusProxy=false" ,
+            "&usertype=0" ,
+            "&isHaveNotice=0" ,
+            "&times=12" ,
+            "&weizhi=0" ,
+            "&smsid=0" ,
+            "&freeuser=" ,
+            "&freepasswd=" ,
+            "&listwxauth=0" ,
+            "&templatetype=1" ,
+            "&tname=5" ,
+            "&logintype=0" ,
+            "&act=DISCONN" ,
+            "&is189=true" ,
+            "&terminalType ="
+        };
+    }
+
     /// <summary>
     /// 真实有线网卡IP获得
     /// </summary>

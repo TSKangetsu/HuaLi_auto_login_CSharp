@@ -15,8 +15,14 @@ namespace HUALI_NETLOGIN
             string user = test2.User1;
             string password = test2.Password1;
             IP_Test_module ins = new IP_Test_module();
-            Net_work test = new Net_work();
-            test.Network(user, password);
+            try
+            {
+                Net_work test = new Net_work();
+                test.Network(user, password);
+            }catch
+            {
+
+            }
         }
 
     }
