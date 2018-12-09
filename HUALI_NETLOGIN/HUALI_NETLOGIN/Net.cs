@@ -137,12 +137,29 @@ namespace PCI_IP_module
         public string IPAddress { get; set; }
         //是否包含usb的值
         private string query_Devices { get; set; }
+        private string usb_is { get; set; }
         /// <summary>
         /// 获得ip
         /// </summary>
         /// <param name="Include_USB">是否包含usb网卡，默认为没有</param>
         public IP_Test_module(bool Include_USB = false)
-        {
+        {            
+            //下面面检查是否含有usb网卡
+            /*----------------------------------------------------------------------------------------------------------------------------------------*/
+            ManagementObjectCollection ins1 = new ManagementObjectSearcher("SELECT * FROM Win32_NetworkAdapter WHERE (PNPDeviceID LIKE 'USB%') AND (NOT(Description LIKE '%Wireless%'))").Get();
+            foreach (ManagementObject usb_info in ins1)
+            {
+                usb_is = usb_info["Description"] as string;
+            }
+            if (usb_is == null)
+            {
+                Include_USB = false;
+            }
+            else
+            {
+                Include_USB = true;
+            }
+            /*----------------------------------------------------------------------------------------------------------------------------------------*/
             if (Include_USB == false)
             {
                 query_Devices = "SELECT * FROM Win32_NetworkAdapter WHERE (PNPDeviceID LIKE 'PCI%') AND (NOT (Description LIKE '%Wireless%'))";
@@ -151,7 +168,7 @@ namespace PCI_IP_module
             {
                 query_Devices = "SELECT * FROM Win32_NetworkAdapter WHERE (PNPDeviceID LIKE 'PCI%') AND (NOT (Description LIKE '%Wireless%')  AND (PNPDeviceID LIKE 'USB%') )";
             }
-
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             ManagementObjectCollection True_NETWork_Adapter = new ManagementObjectSearcher(query_Devices).Get();
             foreach (ManagementObject True_Adapter in True_NETWork_Adapter)
             {
