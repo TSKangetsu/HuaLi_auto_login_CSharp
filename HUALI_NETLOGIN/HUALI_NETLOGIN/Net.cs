@@ -146,27 +146,27 @@ namespace PCI_IP_module
         {            
             //下面面检查是否含有usb网卡
             /*----------------------------------------------------------------------------------------------------------------------------------------*/
-            ManagementObjectCollection ins1 = new ManagementObjectSearcher("SELECT * FROM Win32_NetworkAdapter WHERE (PNPDeviceID LIKE 'USB%') AND (NOT(Description LIKE '%Wireless%'))").Get();
-            foreach (ManagementObject usb_info in ins1)
-            {
-                usb_is = usb_info["Description"] as string;
-            }
-            if (usb_is == null)
-            {
-                Include_USB = false;
-            }
-            else
-            {
-                Include_USB = true;
-            }
+            //ManagementObjectCollection ins1 = new ManagementObjectSearcher("SELECT * FROM Win32_NetworkAdapter WHERE (PNPDeviceID LIKE 'USB%') AND (NOT(Description LIKE '%Wireless%'))").Get();
+            //foreach (ManagementObject usb_info in ins1)
+            //{
+            //    usb_is = usb_info["Description"] as string;
+            //}
+            //if (usb_is == null)
+            //{
+            //    Include_USB = false;
+            //}
+            //else
+            //{
+            //    Include_USB = true;
+            //}
             /*----------------------------------------------------------------------------------------------------------------------------------------*/
             if (Include_USB == false)
             {
-                query_Devices = "SELECT * FROM Win32_NetworkAdapter WHERE (PNPDeviceID LIKE 'PCI%') AND (NOT (Description LIKE '%Wireless%'))";
+                query_Devices = "SELECT * FROM Win32_NetworkAdapter WHERE (PNPDeviceID LIKE 'PCI%')";
             }
             else
             {
-                query_Devices = "SELECT * FROM Win32_NetworkAdapter WHERE (PNPDeviceID LIKE 'PCI%') AND (NOT (Description LIKE '%Wireless%')  AND (PNPDeviceID LIKE 'USB%') )";
+                query_Devices = "SELECT * FROM Win32_NetworkAdapter WHERE (PNPDeviceID LIKE 'PCI%')";
             }
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             ManagementObjectCollection True_NETWork_Adapter = new ManagementObjectSearcher(query_Devices).Get();
@@ -181,7 +181,7 @@ namespace PCI_IP_module
             ManagementObjectCollection Target_Adapter_info = new ManagementObjectSearcher("SELECT * FROM Win32_NetworkAdapterConfiguration WHERE Description=" + "'" + Device + "'").Get();
             foreach (ManagementObject Target_Adapter in Target_Adapter_info)
             {
-                String[] IPCollection = Target_Adapter["IPAddress"] as String[]; // IP地址
+                string[] IPCollection = Target_Adapter["IPAddress"] as string[]; // IP地址
                 if (IPCollection != null)
                 {
                     foreach (String adress in IPCollection)

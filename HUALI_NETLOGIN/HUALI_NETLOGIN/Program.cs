@@ -1,6 +1,6 @@
 ﻿using System;
-using PCI_IP_module;
 using Start_Menu;
+using HUALI_NETLOGIN_Netim;
 
 /// <summary>
 /// 程序主体
@@ -14,11 +14,9 @@ namespace HUALI_NETLOGIN
             Strat test2 = new Strat();
             string user = test2.User1;
             string password = test2.Password1;
-            IP_Test_module ins = new IP_Test_module();
             try
             {
-                Net_work test = new Net_work();
-                test.Network(user, password);
+                Netim test = new Netim(user, password);
             }catch
             {
 
