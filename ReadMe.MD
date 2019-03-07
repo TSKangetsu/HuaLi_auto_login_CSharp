@@ -9,7 +9,7 @@
   2019-3-7更<br/>
   突然想起来可以Socket connect portal服务器，然后获取LocalIPENDPoint ，这个ip还可以用于认证 “miniwifi”<br/>
   <br/>
-  留下了一堆vmi查询的方法，现在这个工程理论上可以直接在dotnetcore上跑，配合linux的bash做成服务后台跑，设个定时器什么的<br/>
+  留下了一堆wmi查询的方法，现在这个工程理论上可以直接在dotnetcore上跑，配合linux的bash做成服务后台跑，设个定时器什么的<br/>
   当然我最近很忙很忙，过两个月再说吧<br/>
   <br/>
   在辣鸡2b真tm孤独
