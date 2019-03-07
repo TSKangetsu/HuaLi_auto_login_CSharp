@@ -5,3 +5,8 @@
 <p>使用说明<p><br/>
   右键以管理员运行，会在系统启动文件夹添加一个启动文件，开机自动登录<br/>
   若要更舒适的使用请使用计划任务程序<br/>
+  <br/>
+  突然想起来可以Socket connect portal服务器，然后获取LocalIPENDPoint ，这个ip还可以用于认证 “miniwifi”<br/>
+  <br/>
+  留下了一堆vmi查询的方法，现在这个工程理论上可以直接在dotnetcore上跑，配合linux的bash做成服务后台跑，设个定时器什么的<br/>
+  当然我最近很忙很忙，过两个月再说吧<br/>
