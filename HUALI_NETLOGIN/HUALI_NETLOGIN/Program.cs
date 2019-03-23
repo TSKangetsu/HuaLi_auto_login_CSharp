@@ -11,17 +11,7 @@ namespace HUALI_NETLOGIN
     {
         static void Main()
         {
-            Strat test2 = new Strat();
-            string user = test2.User1;
-            string password = test2.Password1;
-            try
-            {
-                Netim test = new Netim(user, password);
-            }catch
-            {
-
-            }
+            JsonSet ins = new JsonSet("ins" , "ins");
         }
-
     }
 }
