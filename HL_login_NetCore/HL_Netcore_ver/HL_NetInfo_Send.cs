@@ -8,17 +8,24 @@ using HL_Netcore_ver.UserData_Set_Json;
 
 namespace HL_Netcore_ver.HL_NetInfo_Send
 {
-    class Netvim : JsonData
+    interface IIPGet
     {
+        string IPGet();
+    }
+    class Netvim : JsonData, IIPGet
+    {
+        string ip { get; set; }
+        public Netvim()
+        {
+            //interface用
+        }
         public Netvim(string user, string password)
         {
-            NetInfo_Send(user , password);
+            IPGet();
+            NetInfo_Send(user, password, ip);
         }
-        public bool NetInfo_Send(string user, string password)
+        public bool NetInfo_Send(string user, string password, string ip)
         {
-            Socket netpro = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            netpro.Connect(IPAddress.Parse("219.136.125.139"), 80);
-            string ip = ((IPEndPoint)netpro.LocalEndPoint).Address.ToString();
             List<string> poststring1 = new List<string>
             {
                 "wlanuserip="+ip,
@@ -63,7 +70,6 @@ namespace HL_Netcore_ver.HL_NetInfo_Send
                 "&userid="+user+"%40GDHLXY",
                 "&passwd="+password,
             };
-
             string postString = string.Empty;
             foreach (string adpat in poststring1)
             {
@@ -80,14 +86,21 @@ namespace HL_Netcore_ver.HL_NetInfo_Send
             {
                 Ping pingtonet = new Ping();
                 PingReply reply = pingtonet.Send(neturl);
-                JsonData connectset = new JsonData{Connected = "Connected"};
+                JsonData connectset = new JsonData { Connected = "Connected" };
                 return true;
             }
             catch (PingException e)
             {
-                JsonData connectset = new JsonData{Connected = e.ToString()};
+                JsonData connectset = new JsonData { Connected = e.ToString() };
                 return false;
             }
+        }
+        public string IPGet()
+        {
+            Socket netpro = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            netpro.Connect(IPAddress.Parse("219.136.125.139"), 80);
+            ip = ((IPEndPoint)netpro.LocalEndPoint).Address.ToString();
+            return ip;
         }
     }
 }

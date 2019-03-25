@@ -9,9 +9,7 @@ namespace HL_Netcore_ver
     {
         static void Main(string[] args)
         {
-            StartCheck ins = new StartCheck();
-            Netvim insa =new Netvim("","");
-            Console.Read();
+            StartCheck ins = new StartCheck(args);
         }
     }
 }

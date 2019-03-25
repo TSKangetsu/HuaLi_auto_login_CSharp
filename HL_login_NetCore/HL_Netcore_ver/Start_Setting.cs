@@ -8,7 +8,7 @@ namespace HL_Netcore_ver.StartSettting
 {
     class StartCheck : JsonData
     {
-        public StartCheck()
+        public StartCheck(string[] args)
         {
             string path = Directory.GetCurrentDirectory();
             if (File.Exists(path + "/HUALI_login_info.json"))
@@ -21,6 +21,10 @@ namespace HL_Netcore_ver.StartSettting
                 string usernames = jsonData.UserInfo["User"];
                 string passwords = jsonData.UserInfo["Password"];
                 Netvim NetSend = new Netvim(usernames,passwords);
+            }else
+            {
+                IIPGet ins = new Netvim();
+                JsonFuncFirst filesetfirst = new JsonFuncFirst(args[0] , args[1] , ins.IPGet());
             }
         }
     }
