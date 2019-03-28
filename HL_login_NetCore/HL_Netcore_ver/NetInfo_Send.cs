@@ -15,14 +15,12 @@ namespace HL_Netcore_ver.HL_NetInfo_Send
     class Netvim : JsonData, IIPGet
     {
         string ip { get; set; }
-        public Netvim()
+        public string IPGet()
         {
-            //interface用
-        }
-        public Netvim(string user, string password)
-        {
-            IPGet();
-            NetInfo_Send(user, password, ip);
+            Socket netpro = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            netpro.Connect(IPAddress.Parse("219.136.125.139"), 80);
+            ip = ((IPEndPoint)netpro.LocalEndPoint).Address.ToString();
+            return ip;
         }
         public bool NetInfo_Send(string user, string password, string ip)
         {
@@ -75,32 +73,30 @@ namespace HL_Netcore_ver.HL_NetInfo_Send
             {
                 postString = postString + adpat;
             };
-
             string url = "http://219.136.125.139/portalAuthAction.do";
-            string neturl = "http://www.baidu.com";
+            string neturl = "www.baidu.com";
             var postData = Encoding.UTF8.GetBytes(postString);
             WebClient data_post = new WebClient();//webclient模拟表单提交
             data_post.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
-            data_post.UploadData(url, "POST", postData);
             try
             {
-                Ping pingtonet = new Ping();
-                PingReply reply = pingtonet.Send(neturl);
-                JsonData connectset = new JsonData { Connected = "Connected" };
-                return true;
+                data_post.UploadData(url, "POST", postData);
+                Ping ping = new Ping();
+                PingReply pingReply = ping.Send(neturl);
+                if (pingReply.Status == IPStatus.Success)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (PingException e)
             {
                 JsonData connectset = new JsonData { Connected = e.ToString() };
                 return false;
             }
-        }
-        public string IPGet()
-        {
-            Socket netpro = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            netpro.Connect(IPAddress.Parse("219.136.125.139"), 80);
-            ip = ((IPEndPoint)netpro.LocalEndPoint).Address.ToString();
-            return ip;
         }
     }
 }

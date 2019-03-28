@@ -35,5 +35,19 @@ namespace HL_Netcore_ver.UserData_Set_Json
             txtwrite.Write(jsondata_on);
             txtwrite.Close();
         }
+
+        public string[] JsonFuncRead_userinfo()
+        {
+            string path = Directory.GetCurrentDirectory();
+            FileStream txtfile = new FileStream(path + "/HUALI_login_info.json", FileMode.Open, FileAccess.Read);
+            StreamReader txtread = new StreamReader(txtfile);
+            string JsonGet = txtread.ReadToEnd().ToString();
+            txtfile.Close();
+            JsonData jsonData = JsonConvert.DeserializeObject<JsonData>(JsonGet);
+            string[] Userinfo = new string[2];
+            Userinfo[0] = jsonData.UserInfo["User"];
+            Userinfo[1] = jsonData.UserInfo["Password"];
+            return Userinfo;
+        }
     }
 }
