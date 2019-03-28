@@ -12,11 +12,11 @@ namespace HL_Netcore_ver.UserData_Set_Json
         public string Connected { set; get; }
         public Dictionary<string, string> UserInfo { get; set; }
     }
-    class JsonFuncFirst
+    class JsonFuncWrite
     {
         public string jsondata_on { get; set; }
         JsonData jsondata { get; set; }
-        public JsonFuncFirst(string User, string Password, string EndPointIP)
+        public JsonFuncWrite(string User, string Password, string EndPointIP)
         {
             jsondata = new JsonData
             {

@@ -11,7 +11,9 @@ namespace HL_Netcore_ver.StartSettting
     {
         public void Addconfig(String[] args)
         {
-            
+            IIPGet IPGET = new Netvim();
+            JsonFuncWrite writeconfig = new JsonFuncWrite(args[1] , args[2] , IPGET.IPGet());
+            Console.WriteLine("config add success");
         }
         public string Connect(string[] args)
         {
@@ -53,6 +55,10 @@ namespace HL_Netcore_ver.StartSettting
             {
                 return "No Config file set , plz try add config or get help";
             }
+        }
+        public string disconnector()
+        {
+            return "";
         }
     }
 }

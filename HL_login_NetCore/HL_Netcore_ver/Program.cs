@@ -14,7 +14,7 @@ namespace HL_Netcore_ver
             StartCheck start = new StartCheck();
             switch (args[0])
             {
-                case "add config":
+                case "add_config":
                     start.Addconfig(args);
                     break;
                 case "connect":
@@ -30,17 +30,17 @@ namespace HL_Netcore_ver
 
                     break;
                 default:
-
+                    Console.WriteLine("nothing happend ,please add 'help' for help");
                     break;
             }
         }
 
         void jsoncon()
         {
-            string path1 = Directory.GetCurrentDirectory()+"/HUALI_login_info.json";
-            if(File.Exists(path1) == false)
+            string path1 = Directory.GetCurrentDirectory() + "/HUALI_login_info.json";
+            if (File.Exists(path1) == false)
             {
-                
+
             }
         }
     }
