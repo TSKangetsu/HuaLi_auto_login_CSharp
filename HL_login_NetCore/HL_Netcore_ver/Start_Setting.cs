@@ -19,7 +19,7 @@ namespace HL_Netcore_ver.StartSettting
         {
             Netvim Net_start = new Netvim();
             string ip = Net_start.IPGet();
-            if(Net_start.NetInfo_Send(args[1], args[2], ip))
+            if(Net_start.Netlogin(args[1], args[2], ip))
             {
                 return "connect succesfully , connect message dosen't save";
             }
@@ -42,7 +42,7 @@ namespace HL_Netcore_ver.StartSettting
                 string passwords = jsonData.UserInfo["Password"];
                 IIPGet GetIP = new Netvim();
                 Netvim NetSend = new Netvim();
-                if (NetSend.NetInfo_Send(usernames, passwords, GetIP.IPGet()))
+                if (NetSend.Netlogin(usernames, passwords, GetIP.IPGet()))
                 {
                     return "Connect succfully";
                 }

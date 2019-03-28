@@ -22,7 +22,34 @@ namespace HL_Netcore_ver.HL_NetInfo_Send
             ip = ((IPEndPoint)netpro.LocalEndPoint).Address.ToString();
             return ip;
         }
-        public bool NetInfo_Send(string user, string password, string ip)
+        private bool Net_send(string postString)
+        {
+            string url = "http://219.136.125.139/portalAuthAction.do";
+            string neturl = "www.baidu.com";
+            var postData = Encoding.UTF8.GetBytes(postString);
+            WebClient data_post = new WebClient();//webclient模拟表单提交
+            data_post.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
+            try
+            {
+                data_post.UploadData(url, "POST", postData);
+                Ping ping = new Ping();
+                PingReply pingReply = ping.Send(neturl);
+                if (pingReply.Status == IPStatus.Success)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (PingException e)
+            {
+                JsonData connectset = new JsonData { Connected = e.ToString() };
+                return false;
+            }
+        }
+        public bool Netlogin(string user, string password, string ip)
         {
             List<string> poststring1 = new List<string>
             {
@@ -73,30 +100,59 @@ namespace HL_Netcore_ver.HL_NetInfo_Send
             {
                 postString = postString + adpat;
             };
-            string url = "http://219.136.125.139/portalAuthAction.do";
-            string neturl = "www.baidu.com";
-            var postData = Encoding.UTF8.GetBytes(postString);
-            WebClient data_post = new WebClient();//webclient模拟表单提交
-            data_post.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
-            try
+            return Net_send(postString);
+        }
+        public bool Netoffline(string ip)
+        {
+            List<string> poststring = new List<string>
             {
-                data_post.UploadData(url, "POST", postData);
-                Ping ping = new Ping();
-                PingReply pingReply = ping.Send(neturl);
-                if (pingReply.Status == IPStatus.Success)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (PingException e)
+                "userid=19924613328%40GDHLXY" ,
+                "&wlanuserip=" + ip,
+                "&wlanacname=gzhlxy" ,
+                "&chal_id=" ,
+                "&chal_vector=" ,
+                "&auth_type=PAP" ,
+                "&seq_id=" ,
+                "&req_id=" ,
+                "&wlanacIp=183.56.17.19" ,
+                "&ssid=" ,
+                "&vlan=" ,
+                "&mac=" ,
+                "&message=" ,
+                "%C4%FA%B5%C4%BF%C9%D3%C3%CC%EC%CA%FD%CE%AA%28%CC%EC%29%3A23.0" ,
+                "&bank_acct=" ,
+                "&isCookies=" ,
+                "&version=0" ,
+                "&authkey=gzhlxy" ,
+                "&url=http%3A%2F%2Fabout%3Ablank" ,
+                "&usertime=570192564" ,
+                "&listpasscode=0" ,
+                "&listgetpass=0" ,
+                "&getpasstype=0" ,
+                "&randstr=" ,
+                "&domain=GDHLXY" ,
+                "&isRadiusProxy=false" ,
+                "&usertype=0" ,
+                "&isHaveNotice=0" ,
+                "&times=12" ,
+                "&weizhi=0" ,
+                "&smsid=0" ,
+                "&freeuser=" ,
+                "&freepasswd=" ,
+                "&listwxauth=0" ,
+                "&templatetype=1" ,
+                "&tname=5" ,
+                "&logintype=0" ,
+                "&act=DISCONN" ,
+                "&is189=true" ,
+                "&terminalType ="
+            };
+            string postString = string.Empty;
+            foreach (string adpat in poststring)
             {
-                JsonData connectset = new JsonData { Connected = e.ToString() };
-                return false;
-            }
+                postString = postString + adpat;
+            };
+            return Net_send(postString);
         }
     }
 }

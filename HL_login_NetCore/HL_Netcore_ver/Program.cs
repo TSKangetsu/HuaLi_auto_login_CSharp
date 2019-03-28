@@ -27,7 +27,7 @@ namespace HL_Netcore_ver
 
                     break;
                 case "help":
-
+                    
                     break;
                 default:
                     Console.WriteLine("nothing happend ,please add 'help' for help");
