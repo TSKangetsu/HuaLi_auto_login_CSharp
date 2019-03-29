@@ -12,11 +12,19 @@ namespace HL_Netcore_ver.UserData_Set_Json
         public string Connected { set; get; }
         public Dictionary<string, string> UserInfo { get; set; }
     }
-    class JsonFuncWrite
+    class JsonSet
     {
-        public string jsondata_on { get; set; }
-        JsonData jsondata { get; set; }
-        public JsonFuncWrite(string User, string Password, string EndPointIP)
+        private string jsondata_on { get; set; }
+        private JsonData jsondata { get; set; }
+        public JsonSet()
+        {
+            //空初始化用
+        }
+        public JsonSet(string User, string Password, string EndPointIP)
+        {
+            JsonFuncWrite(User, Password, EndPointIP);
+        }
+        public void JsonFuncWrite(string User, string Password, string EndPointIP)
         {
             jsondata = new JsonData
             {
@@ -36,18 +44,18 @@ namespace HL_Netcore_ver.UserData_Set_Json
             txtwrite.Close();
         }
 
-        public string[] JsonFuncRead_userinfo()
-        {
-            string path = Directory.GetCurrentDirectory();
-            FileStream txtfile = new FileStream(path + "/HUALI_login_info.json", FileMode.Open, FileAccess.Read);
-            StreamReader txtread = new StreamReader(txtfile);
-            string JsonGet = txtread.ReadToEnd().ToString();
-            txtfile.Close();
-            JsonData jsonData = JsonConvert.DeserializeObject<JsonData>(JsonGet);
-            string[] Userinfo = new string[2];
-            Userinfo[0] = jsonData.UserInfo["User"];
-            Userinfo[1] = jsonData.UserInfo["Password"];
-            return Userinfo;
-        }
+        // public string[] JsonFuncRead_userinfo()
+        // {
+        //     string path = Directory.GetCurrentDirectory();
+        //     FileStream txtfile = new FileStream(path + "/HUALI_login_info.json", FileMode.Open, FileAccess.Read);
+        //     StreamReader txtread = new StreamReader(txtfile);
+        //     string JsonGet = txtread.ReadToEnd().ToString();
+        //     txtfile.Close();
+        //     JsonData jsonData = JsonConvert.DeserializeObject<JsonData>(JsonGet);
+        //     string[] Userinfo = new string[2];
+        //     Userinfo[0] = jsonData.UserInfo["User"];
+        //     Userinfo[1] = jsonData.UserInfo["Password"];
+        //     return Userinfo;
+        // }
     }
 }
