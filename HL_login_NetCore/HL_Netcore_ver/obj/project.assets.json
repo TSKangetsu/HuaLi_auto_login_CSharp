@@ -1496,11 +1496,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\x4030\\OneDrive\\文档\\VSCode\\HL_login_NetCore\\HL_Netcore_ver\\HL_Netcore_ver.csproj",
+      "projectUniqueName": "c:\\Users\\x4030\\OneDrive\\文档\\Project Code TSKangetsu\\CS.华立网络认证(TCPClient)\\HuaLi_auto_login_CSharp\\HL_login_NetCore\\HL_Netcore_ver\\HL_Netcore_ver.csproj",
       "projectName": "HL_Netcore_ver",
-      "projectPath": "C:\\Users\\x4030\\OneDrive\\文档\\VSCode\\HL_login_NetCore\\HL_Netcore_ver\\HL_Netcore_ver.csproj",
+      "projectPath": "c:\\Users\\x4030\\OneDrive\\文档\\Project Code TSKangetsu\\CS.华立网络认证(TCPClient)\\HuaLi_auto_login_CSharp\\HL_login_NetCore\\HL_Netcore_ver\\HL_Netcore_ver.csproj",
       "packagesPath": "C:\\Users\\x4030\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\x4030\\OneDrive\\文档\\VSCode\\HL_login_NetCore\\HL_Netcore_ver\\obj\\",
+      "outputPath": "c:\\Users\\x4030\\OneDrive\\文档\\Project Code TSKangetsu\\CS.华立网络认证(TCPClient)\\HuaLi_auto_login_CSharp\\HL_login_NetCore\\HL_Netcore_ver\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder"
