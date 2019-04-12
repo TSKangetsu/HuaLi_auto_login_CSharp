@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "c:\\Users\\x4030\\OneDrive\\Documents\\Project Code TSKangetsu\\CS.HLNetLogin(TCPClient)\\HuaLi_auto_login_CSharp\\HL_login_NetCore\\HL_login_Netcore\\HL_Login_Netcore.csproj",
+  "TargetFramework": "netcoreapp2.2",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  }
+}
