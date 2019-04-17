@@ -3,13 +3,8 @@
 控制台程序暂告一段落，开发已经终止，但是会根据收集到的问题进行维护，请积极联系我<br/>
 由于开发过于针对化，若无法有效，请在issues提交问题，附上电脑型号以及网络适配器的截图<br/><br/>
 <h1>使用说明</h1><br/>
-  右键以管理员运行，会在系统启动文件夹添加一个启动文件，开机自动登录<br/>
-  若要更舒适的使用请使用计划任务程序<br/>
-  <br/>
-  2019-3-7更<br/>
-  突然想起来可以Socket connect portal服务器，然后获取LocalIPENDPoint ，这个ip还可以用于认证 “miniwifi”<br/>
-  <br/>
-  留下了一堆wmi查询的方法，现在这个工程理论上可以直接在dotnetcore上跑，配合linux的bash做成服务后台跑，设个定时器什么的<br/>
-  当然我最近很忙很忙，过两个月再说吧<br/>
-  <br/>
-  在辣鸡2b真tm孤独
+<br/>
+<br/>
+windows请使用0.999.999,以管理员运行便可，会添加到启动菜单，也可以自己设置定时任务启动；<br/>
+DotnetCore安装方法：https://dotnet.microsoft.com/download  自行下载2.2.104版本，无需求只需安装runtime即可<br/>
+DotnetCore版参数help查看具体命令
