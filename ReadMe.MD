@@ -11,3 +11,5 @@ DotnetCore版参数help查看具体命令
 <h1>源代码说明</h1>
 <br/>Service是windows服务形式的，但是系统有自动任务程序，已经不再写了。<br/>
 Net_login是DotnetCore跨平台版本，你甚至可以在termux上使用 ，别说树莓派<br/>
+<h2>分支说明</h2>
+<br/>3个分支，主分支是netcore的跨平台版，windows-ver是windows的framework版，windowsservice-v是服务形式的
