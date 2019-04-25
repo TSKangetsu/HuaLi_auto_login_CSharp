@@ -1,6 +1,0 @@
-C:\Users\TSKG\OneDrive\文档\Visual Studio 2017\source\HUALI_NETSERVICE\HUALI_NETService\bin\Debug\HUALI_NETService.exe
-C:\Users\TSKG\OneDrive\文档\Visual Studio 2017\source\HUALI_NETSERVICE\HUALI_NETService\bin\Debug\HUALI_NETService.pdb
-C:\Users\TSKG\OneDrive\文档\Visual Studio 2017\source\HUALI_NETSERVICE\HUALI_NETService\obj\Debug\HUALI_NETService.csproj.CoreCompileInputs.cache
-C:\Users\TSKG\OneDrive\文档\Visual Studio 2017\source\HUALI_NETSERVICE\HUALI_NETService\obj\Debug\HUALI_NETService.exe
-C:\Users\TSKG\OneDrive\文档\Visual Studio 2017\source\HUALI_NETSERVICE\HUALI_NETService\obj\Debug\HUALI_NETService.pdb
-C:\Users\TSKG\OneDrive\文档\Visual Studio 2017\source\HUALI_NETSERVICE\HUALI_NETService\obj\Debug\HUALI_NETService.csprojAssemblyReference.cache
