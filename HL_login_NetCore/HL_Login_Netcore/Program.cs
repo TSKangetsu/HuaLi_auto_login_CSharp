@@ -29,6 +29,9 @@ namespace HL_Netcore_ver
                     case "disconnect":
                         Console.WriteLine(start.disconnector());
                         break;
+                    case "manual_connect":
+                        Console.WriteLine(start.Manual_connect(args));
+                        break;
                     case "help":
                         Console.WriteLine(start.ask_for_help());
                         break;
@@ -36,7 +39,8 @@ namespace HL_Netcore_ver
                         Console.WriteLine("nothing happend ,please add 'help' for help");
                         break;
                 }
-            }catch
+            }
+            catch
             {
                 Console.WriteLine("nothing happend ,please add 'help' for help");
             }

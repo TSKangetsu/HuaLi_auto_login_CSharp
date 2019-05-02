@@ -30,7 +30,7 @@ namespace HL_Netcore_ver.StartSettting
                 {
                     Console.WriteLine("connect remoteserver failed , write ip null");
                 }
-                
+
             }
             else
             {
@@ -77,6 +77,20 @@ namespace HL_Netcore_ver.StartSettting
                 return "No Config file set , plz try add config or get help";
             }
         }
+
+        public string Manual_connect(string[] args)
+        {
+            try
+            {
+                Netvim NetSend = new Netvim();
+                NetSend.Netlogin(args[1], args[2], args[3]);
+                return "connected success";
+            }
+            catch
+            {
+                return "manual connect failed";
+            }
+        }
         public string disconnector()
         {
             try
@@ -101,10 +115,10 @@ namespace HL_Netcore_ver.StartSettting
 
         public string ask_for_help()
         {
-            string usage = "github : http://github.com/TSKangetsu \r\n"+
-            "usage dotnet HL_Netcore_ver.dll add_config <username> <password> \r\n"+
-            "dotnet HL_Netcore_ver.dll connect <username> <password> \r\n"+
-            "dotnet HL_Netcore_ver.dll connect with config \r\n"+
+            string usage = "github : http://github.com/TSKangetsu \r\n" +
+            "usage dotnet HL_Netcore_ver.dll add_config <username> <password> \r\n" +
+            "dotnet HL_Netcore_ver.dll connect <username> <password> \r\n" +
+            "dotnet HL_Netcore_ver.dll connect with config \r\n" +
             "dotnet HL_Netcore_ver.dll disconnect \r\n";
             return usage;
         }
