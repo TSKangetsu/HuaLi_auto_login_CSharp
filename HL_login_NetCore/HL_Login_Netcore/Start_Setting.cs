@@ -78,7 +78,7 @@ namespace HL_Netcore_ver.StartSettting
             }
         }
 
-        public string Manual_connect(string[] args)
+        public string Manual_connect(string[] args)//args1 = user ; args2 = password ; args3 = ip address
         {
             try
             {
@@ -119,7 +119,8 @@ namespace HL_Netcore_ver.StartSettting
             "usage dotnet HL_Netcore_ver.dll add_config <username> <password> \r\n" +
             "dotnet HL_Netcore_ver.dll connect <username> <password> \r\n" +
             "dotnet HL_Netcore_ver.dll connect with config \r\n" +
-            "dotnet HL_Netcore_ver.dll disconnect \r\n";
+            "dotnet HL_Netcore_ver.dll disconnect \r\n" +
+            "dotnet HL_Netcore_ver.dll manual_connect <username> <password> <local IP address>";
             return usage;
         }
     }
